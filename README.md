@@ -11,7 +11,7 @@ huawei-php
 ## 安装
 
 ~~~
-composer require jksusu/huawei-php
+composer require jksusu/huawei-phpsdk
 ~~~
 
 ## 使用
