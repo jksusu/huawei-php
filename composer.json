@@ -1,0 +1,19 @@
+{
+  "name": "jksusu/huawei-phpsdk",
+  "description": "华为云人脸识别服务接口 php sdk",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jksusu",
+      "email": "jksusuppx@qq.com"
+    }
+  ],
+  "require": {
+    "yurunsoft/yurun-http": "^4.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hw\\": "./src/"
+    }
+  }
+}
