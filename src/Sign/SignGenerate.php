@@ -9,6 +9,8 @@ class SignGenerate
 
     private $url = 'https://iam.cn-east-2.myhuaweicloud.com';
 
+    private $path = '/v3/auth/tokens';
+
     /**
      * 获取token
      * @date: 2020/11/20 13:27
@@ -23,8 +25,6 @@ class SignGenerate
      */
     public function getToken(string $iamUser, string $iamUserPwd, string $iamAccount, string $iamAccountId, string $projectId, string $projectName)
     {
-        $uri = '/v3/auth/tokens';
-
         $auth = [
             'auth' => [
                 'identity' => [
@@ -56,7 +56,7 @@ class SignGenerate
             $authp['auth']['scope']['project']['id'] = $projectId;
         }
 
-        $res = $this->charge($this->url . $uri, [], json_encode($auth), 'POST');
+        $res = $this->charge($this->url . $this->path, [], json_encode($auth), 'POST');
 
         $data = json_decode($res->getBody()->getContents(), true);
 

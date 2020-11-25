@@ -19,12 +19,12 @@ class FaceRecognition
 
     protected $projectId;
 
-    protected $token;
+    protected $header = [];
 
     public function __construct(string $projectId, string $token)
     {
         $this->projectId = $projectId;
-        $this->token = $token;
+        $this->header = ['X-Auth-Token' => $token, 'Content-Type' => "application/json"];
     }
 
     /**
@@ -42,7 +42,7 @@ class FaceRecognition
         $params['attributes'] = '1,2,21,12,13';//返回人脸属性
         return $this->charge(
             $this->url . '/v2/' . $this->projectId . '/face-detect',
-            ['X-Auth-Token' => $this->token, 'Content-Type' => "application/json",],
+            $this->header,
             json_encode($params),
             'POST'
         )->getBody()->getContents();
@@ -64,7 +64,7 @@ class FaceRecognition
     {
         return $this->charge(
             $this->url . '/v2/' . $this->projectId . '/face-compare',
-            ['X-Auth-Token' => $this->token, 'Content-Type' => "application/json"],
+            $this->header,
             json_encode($params),
             'POST'
         )->getBody()->getContents();
@@ -90,7 +90,7 @@ class FaceRecognition
     {
         return $this->charge(
             $this->url . '/v2/' . $this->projectId . '/face-sets/' . $faceSetName . 'search',
-            ['X-Auth-Token' => $this->token, 'Content-Type' => "application/json"],
+            $this->header,
             $params,
             'POST'
         )->getBody()->getContents();
@@ -111,7 +111,7 @@ class FaceRecognition
     {
         return $this->charge(
             $this->url . '/v1/' . $this->projectId . '/live-detect',
-            ['X-Auth-Token' => $this->token, 'Content-Type' => "application/json"],
+            $this->header,
             json_encode($params),
             'POST'
         )->getBody()->getContents();
@@ -131,7 +131,7 @@ class FaceRecognition
     {
         return $this->charge(
             $this->url . '/v1/' . $this->projectId . '/live-detect-face',
-            ['X-Auth-Token' => $this->token, 'Content-Type' => "application/json"],
+            $this->header,
             json_encode($params),
             'POST'
         )->getBody()->getContents();
